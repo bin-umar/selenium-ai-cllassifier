@@ -1,9 +1,9 @@
 {
-  "name": "test-ai-classifier-client",
-  "version": "1.1.0",
-  "description": "grpc client for semantic label classifier",
-  "homepage": "https://github.com/testdotai/classifier-client-node",
-  "bugs": "https://github.com/testdotai/classifier-client-node/issues",
+  "name": "selenium-ai-classifier",
+  "version": "0.0.1",
+  "description": "Ai for semantic label classifier using in selenium",
+  "homepage": "https://github.com/bin-umar/selenium-ai-classifier",
+  "bugs": "https://github.com/bin-umar/selenium-ai-classifier/issues",
   "main": "./build/index.js",
   "gypfile": true,
   "scripts": {
@@ -29,13 +29,12 @@
   "keywords": [
     "test",
     "automation",
-    "appium",
     "selenium",
     "ai",
     "ml"
   ],
-  "repository": "github:testdotai/classifier-client-node",
-  "author": "Jonathan Lipps <jlipps@gmail.com>",
+  "repository": "github:bin-umar/selenium-ai-classifier",
+  "author": "Jahongir Tulforov <bin-umar@mail.ru>",
   "license": "Apache-2.0",
   "dependencies": {
     "@grpc/proto-loader": "^0.5.3",
