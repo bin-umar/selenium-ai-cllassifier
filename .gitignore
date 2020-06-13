@@ -1,4 +1,6 @@
 node_modules
 build
 .idea
-icon-scrapping
+icon-scrapping/video_camera
+icon-scrapping/video_camera.json
+icon-scrapping/results.json
