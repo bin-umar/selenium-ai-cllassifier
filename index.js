@@ -2,12 +2,13 @@ import _ from 'lodash';
 import path from 'path';
 import grpc from 'grpc';
 import B from 'bluebird';
+import fs from 'fs';
 
 const PROTO = path.resolve(__dirname, '..', 'proto', 'classifier.proto');
 
 const DEF_HOST = "localhost";
 const DEF_PORT = 50051;
-const DEF_CONFIDENCE = 0.9;
+const DEF_CONFIDENCE = 0.2;
 
 const QUERY = "//body//*[not(self::script) and not(self::style) and not(child::*)]";
 
@@ -49,6 +50,11 @@ class ClassifierClient {
       try {
         const b64Screen = await el.takeElementScreenshot(el.elementId);
         elementImages[el.elementId] = Buffer.from(b64Screen, 'base64');
+
+        // eslint-disable-next-line promise/prefer-await-to-callbacks
+        // fs.writeFile(`${el.elementId}.png`, b64Screen, 'base64', function(err) {
+        //   console.log(err);
+        // });
       } catch (ign) {}
     }
     if (_.size(elementImages) < 1) {
@@ -62,6 +68,8 @@ class ClassifierClient {
     });
 
     // return only those elements whose ids ended up in our matched list
+    // console.log(matched);
+    // console.log(els);
     return els.filter(el => _.includes(_.keys(matched), el.elementId));
   }
 }

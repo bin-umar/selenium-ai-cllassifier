@@ -39,9 +39,11 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@grpc/proto-loader": "^0.5.3",
+    "axios": "^0.19.2",
     "bluebird": "3.x",
     "chromedriver": "^80.0.1",
     "grpc": "^1.24.2",
+    "images-scraper": "^5.0.7",
     "lodash": "4.x",
     "selenium-standalone": "^6.17.0"
   },
