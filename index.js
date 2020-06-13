@@ -2,7 +2,10 @@ import _ from 'lodash';
 import path from 'path';
 import grpc from 'grpc';
 import B from 'bluebird';
-import fs from 'fs';
+import npmlog from "npmlog";
+import { getMatchingElements } from './lib/classifier';
+import { canvasFromImage } from './lib/image';
+import { asyncmap } from 'asyncbox';
 
 const PROTO = path.resolve(__dirname, '..', 'proto', 'classifier.proto');
 
@@ -12,6 +15,14 @@ const DEF_CONFIDENCE = 0.2;
 
 const QUERY = "//body//*[not(self::script) and not(self::style) and not(child::*)]";
 
+
+const log = new Proxy({}, {
+  get (target, name) {
+    return function (...args) {
+      npmlog[name]('ai-rpc', ...args);
+    };
+  }
+});
 
 class ClassifierClient {
   constructor ({host = DEF_HOST, port = DEF_PORT}) {
@@ -34,8 +45,28 @@ class ClassifierClient {
     confidenceThreshold = DEF_CONFIDENCE,
     allowWeakerMatches = false
   }) {
-    const res = await this._classifyElements({labelHint, elementImages, confidenceThreshold, allowWeakerMatches});
-    return res.classifications;
+    const classifications = {};
+    try {
+      // TODO implementation
+      const elsAndImages = await asyncmap(_.keys(elementImages), async (k) => {
+        return [k, await canvasFromImage(elementImages[k])];
+      });
+      const matchingEls = await getMatchingElements({
+        elsAndImages,
+        label: labelHint,
+        confidence: confidenceThreshold,
+        allowWeakerMatches,
+        logger: log,
+        returnMetadata: true
+      });
+      for (const [elId, label, confidenceForHint, confidence] of matchingEls) {
+        classifications[elId] = {label, confidenceForHint, confidence};
+      }
+    } catch (err) {
+      return console.error(err);
+    }
+    // const res = await this._classifyElements({labelHint, elementImages, confidenceThreshold, allowWeakerMatches});
+    return classifications;
   }
 
   async findElementsMatchingLabel ({

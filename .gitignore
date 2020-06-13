@@ -4,3 +4,7 @@ build
 icon-scrapping/video_camera
 icon-scrapping/video_camera.json
 icon-scrapping/results.json
+icon-scrapping/video_call.json
+icon-scrapping/google_duo.json
+.DS_Store
+Release

@@ -9,10 +9,10 @@ const google = new Scraper({
   }
 });
 
-const fileName = path.resolve(__dirname, 'results.json');
+const fileName = path.resolve(__dirname, 'google_duo.json');
 
 async function scrapeUrls () {
-  const results = await google.scrape('video camera white icon', 1000);
+  const results = await google.scrape('google duo icon', 20);
   fs.writeFile(fileName, JSON.stringify(results, null, 4), () => null);
 }
 
