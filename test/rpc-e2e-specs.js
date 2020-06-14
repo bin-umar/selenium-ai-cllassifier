@@ -3,15 +3,15 @@ import path from 'path';
 import chai from 'chai';
 import should from 'should';
 import { remote } from 'webdriverio';
-import ClassifierClient from '..';
+import find from '../lib/classifier';
 
 chai.use(should);
 
-const PORT = 50051;
-const HOST = "127.0.0.1";
 const FIXTURES = path.resolve(__dirname, "..", "..", "test", "fixtures");
 const CART_IMG = path.resolve(FIXTURES, "cart.png");
 const MIC_IMG = path.resolve(FIXTURES, "microphone.png");
+
+const DEF_CONFIDENCE = 0.6;
 //const FOLDER_IMG = path.resolve(FIXTURES, "folder.png");
 //const MENU_IMG = path.resolve(FIXTURES, "menu.png");
 //const TINY_MENU_IMG = path.resolve(FIXTURES, "menu_small.png");
@@ -65,22 +65,26 @@ describe('RPC server', function () {
   // });
 
   it('should find elements when given a webdriverio object', async function () {
-    const c = new ClassifierClient();
     const driver = await remote({
       host: '127.0.0.1',
       port: 4444,
       capabilities: {
         browserName: 'chrome'
-      }
+      },
     });
+
+    const options = {
+      testaiConfidenceThreshold: DEF_CONFIDENCE
+    };
 
     try {
       await driver.url('file:///Users/d.tulforov/univer/classifier-client-node/test/index.html');
       // await driver.url('https://calls.mail.ru/');
-      const els = await c.findElementsMatchingLabel({
-        driver,
-        labelHint: 'video call',
-      });
+      const els = await find(driver, 'video call', options);
+      // const els = await c.findElementsMatchingLabel({
+      //   driver,
+      //   labelHint: 'video call',
+      // });
       // console.log(els);
       await els[0].click();
       await driver.getUrl();
