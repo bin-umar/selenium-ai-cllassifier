@@ -1,5 +1,4 @@
 import _ from 'lodash';
-import npmlog from "npmlog";
 import { getMatchingElements } from './lib/classifier';
 import { canvasFromImage } from './lib/image';
 import { asyncmap } from 'asyncbox';
@@ -7,14 +6,6 @@ import { asyncmap } from 'asyncbox';
 
 const DEF_CONFIDENCE = 0.2;
 const QUERY = "//body//*[not(self::script) and not(self::style) and not(child::*)]";
-
-const log = new Proxy({}, {
-  get (target, name) {
-    return function (...args) {
-      npmlog[name]('ai-classifier', ...args);
-    };
-  }
-});
 
 class ClassifierClient {
   async classifyElements ({
@@ -34,7 +25,6 @@ class ClassifierClient {
         label: labelHint,
         confidence: confidenceThreshold,
         allowWeakerMatches,
-        logger: log,
         returnMetadata: true
       });
       for (const [elId, label, confidenceForHint, confidence] of matchingEls) {

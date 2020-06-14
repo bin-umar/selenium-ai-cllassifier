@@ -65,7 +65,7 @@ describe('RPC server', function () {
   // });
 
   it('should find elements when given a webdriverio object', async function () {
-    const c = new ClassifierClient({host: HOST, port: PORT});
+    const c = new ClassifierClient();
     const driver = await remote({
       host: '127.0.0.1',
       port: 4444,
@@ -73,6 +73,7 @@ describe('RPC server', function () {
         browserName: 'chrome'
       }
     });
+
     try {
       await driver.url('file:///Users/d.tulforov/univer/classifier-client-node/test/index.html');
       // await driver.url('https://calls.mail.ru/');
