@@ -6,6 +6,7 @@ import npmlog from "npmlog";
 import { getMatchingElements } from './lib/classifier';
 import { canvasFromImage } from './lib/image';
 import { asyncmap } from 'asyncbox';
+// import fs from 'fs';
 
 const PROTO = path.resolve(__dirname, '..', 'proto', 'classifier.proto');
 

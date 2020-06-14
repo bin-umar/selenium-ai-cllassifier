@@ -39,6 +39,7 @@
   "dependencies": {
     "@grpc/proto-loader": "^0.5.3",
     "@tensorflow/tfjs-node": "1.x",
+    "@tensorflow/tfjs": "1.5.2",
     "appium-base-driver": "3.x",
     "appium-support": "2.x",
     "asyncbox": "^2.6.0",
@@ -55,6 +56,7 @@
     "yargs": "15.x"
   },
   "devDependencies": {
+    "@tensorflow/tfjs-converter": "^2.0.0",
     "appium-gulp-plugins": "^5.1.1",
     "babel-eslint": "^7.1.1",
     "chai": "^4.1.2",

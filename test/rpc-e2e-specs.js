@@ -78,7 +78,7 @@ describe('RPC server', function () {
       // await driver.url('https://calls.mail.ru/');
       const els = await c.findElementsMatchingLabel({
         driver,
-        labelHint: 'video camera',
+        labelHint: 'video call',
       });
       // console.log(els);
       await els[0].click();
