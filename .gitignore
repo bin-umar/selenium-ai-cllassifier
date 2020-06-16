@@ -8,3 +8,4 @@ icon-scrapping/video_call.json
 icon-scrapping/google_duo.json
 .DS_Store
 Release
+model/obj_detection_model/saved_model.pb
