@@ -47,9 +47,12 @@
     "bindings": "^1.5.0",
     "canvas": "2.x",
     "chromedriver": "^80.0.1",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
     "images-scraper": "^5.0.7",
     "lodash": "4.x",
     "npmlog": "4.x",
+    "prettier": "^2.0.5",
     "selenium-standalone": "^6.17.0",
     "yargs": "15.x"
   },
