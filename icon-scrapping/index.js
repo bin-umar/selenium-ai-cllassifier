@@ -12,7 +12,7 @@ const google = new Scraper({
 const fileName = path.resolve(__dirname, 'video_call.json');
 
 async function scrapeUrls () {
-  const results = await google.scrape('google duo icon', 20);
+  const results = await google.scrape('video call icon', 1000);
   fs.writeFile(fileName, JSON.stringify(results, null, 4), () => null);
 }
 
