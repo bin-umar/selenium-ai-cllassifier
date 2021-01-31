@@ -40,7 +40,7 @@
     "appium-base-driver": "3.x",
     "appium-support": "2.x",
     "asyncbox": "^2.6.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bindings": "^1.5.0",
     "canvas": "2.x",
     "chromedriver": "^80.0.1",
